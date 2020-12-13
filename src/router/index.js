@@ -10,10 +10,19 @@ Vue.use(VueRouter)
 const routes = [
   {
     path:'/login',
-    component:Login
+    meta:{
+      title:'登录',
+    },
+    component:Login,
   },{
     path:'/',
-    component: Index
+    redirect:'/index'
+  },{
+    path: '/index',
+    component: Index,
+    meta:{
+      title:'首页'
+    }
   },{
     path:'*',
     component: NotFound
@@ -21,7 +30,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
