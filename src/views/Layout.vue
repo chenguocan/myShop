@@ -40,6 +40,13 @@
         </el-aside>
         <!-- 主内容-->
         <el-main>
+          <div class="nav-breadcrumb">
+            <el-breadcrumb separator="/" v-if="slideMenuActive" >
+              <el-breadcrumb-item >首页</el-breadcrumb-item>
+              <el-breadcrumb-item v-for="(item,index) in breadList " :key="index">{{item}}</el-breadcrumb-item>
+            </el-breadcrumb>
+          </div>
+
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -54,10 +61,41 @@ export default {
   data() {
     return {
       navBar: '',
+      breadList:[],
     }
   },
   created() {
     this.navBar=data.navBar
+    let active=localStorage.getItem('active');
+    let slideActive=localStorage.getItem('slideActive');
+    let currentList=localStorage.getItem('currentList');
+    if(active && slideActive){
+      this.navBar.active=JSON.parse(active);
+      this.slideMenuActive=JSON.parse(slideActive);
+      this.breadList=JSON.parse(currentList)
+    }
+  },
+  watch:{
+    '$route'(){
+      this.breadList=[];
+      let router=this.$route.matched;
+      console.log(router);
+      let arr=router.filter(item=>{
+        if(item.name==='index'||item.name==='layout'){
+          return;
+        }else{
+          return item;
+        }
+      })
+      if(arr.length > 0) {
+        arr.forEach(item => {
+          this.breadList.push(item.meta.title);
+        })
+      }
+      localStorage.setItem('currentList',JSON.stringify(this.breadList));
+      localStorage.setItem('active',JSON.stringify(this.navBar.active));
+      localStorage.setItem('slideActive',JSON.stringify(this.slideMenuActive));
+    }
   },
   computed:{
     slideMenu(){
@@ -72,12 +110,19 @@ export default {
       }
     }
   },
+
   methods: {
+    getBranch(){
+
+    },
     headerSelect(key) {
       this.navBar.active=key;
+      this.slideMenuActive='0';
+      this.$router.push({name:this.navBar.list[this.navBar.active].subMenu[this.slideMenuActive].pathname})
     },
     asideSelect(key){
-      this.slideMenuActive=key
+      this.slideMenuActive=key;
+      this.$router.push({name:this.navBar.list[this.navBar.active].subMenu[this.slideMenuActive].pathname})
     }
   }
 }
@@ -104,10 +149,19 @@ export default {
 
 .el-aside {
   color: #333;
+  border-right:1px solid #e0e2e5;
 }
-
+.el-menu{
+  margin: 0;
+  border: none;
+}
 .el-main {
   background-color: #E9EEF3;
   color: #333;
+  padding: 0;
+}
+.nav-breadcrumb{
+  background: white;
+  padding: 20px;
 }
 </style>

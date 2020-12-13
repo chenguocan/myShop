@@ -7,8 +7,9 @@ export default  {
                 subActive: '0',
                 subMenu: [
                     {
-                        name: '1',
-                        icon: 'el-icon-s-order'
+                        name: '后台首页',
+                        icon: 'el-icon-s-order',
+                        pathname: 'index'
                     },
                     {
 
@@ -22,13 +23,15 @@ export default  {
                 subActive: '0',
                 subMenu: [
                     {
-                        name: '1',
-                        icon: 'el-icon-s-claim'
+                        name: '商品列表',
+                        icon: 'el-icon-s-claim',
+                        pathname:'goods'
                     },
                     {
 
-                        name: '2',
-                        icon: ''
+                        name: '订单列表',
+                        icon: 'el-icon-s-claim',
+                        pathname:'orders'
                     },
                     {
 
