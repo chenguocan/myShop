@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from "@/views/Login";
 import Index from "@/views/Index";
 import NotFound from "@/views/NotFound";
+import Layout from "@/views/Layout";
 
 
 Vue.use(VueRouter)
@@ -16,13 +17,17 @@ const routes = [
     component:Login,
   },{
     path:'/',
-    redirect:'/index'
-  },{
-    path: '/index',
-    component: Index,
-    meta:{
-      title:'首页'
-    }
+    redirect:'/index',
+    component: Layout,
+    children:[
+      {
+        path: '/index',
+        component: Index,
+        meta:{
+          title:'首页'
+        }
+      }
+    ]
   },{
     path:'*',
     component: NotFound
