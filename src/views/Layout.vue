@@ -145,11 +145,15 @@ export default {
   justify-content: space-between;
   align-items: center;
   color: white;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
 }
 
 .el-aside {
   color: #333;
   border-right:1px solid #e0e2e5;
+  padding-top: 60px;
 }
 .el-menu{
   margin: 0;
@@ -158,10 +162,11 @@ export default {
 .el-main {
   background-color: #E9EEF3;
   color: #333;
-  padding: 0;
+  padding-top: 60px;
 }
 .nav-breadcrumb{
   background: white;
   padding: 20px;
+  margin: 0 -20px;
 }
 </style>
