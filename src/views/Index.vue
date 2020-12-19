@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="index">
     <el-row :gutter="20" >
       <el-col :span="getCol(showList.length)" v-for="(item,index) in showList" :key="index">
         <el-card class="box-card" shadow="never">
@@ -123,6 +123,7 @@
         </el-card>
       </el-col>
     </el-row>
+
   </div>
 </template>
 
@@ -281,6 +282,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.index{
+
+}
 .box-card{
   display: flex;
   align-items: center;

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { Button,Input,FormItem,Form,Message,Header,Container,Main,Aside,Menu,MenuItem
-    ,Submenu,Avatar,Breadcrumb,BreadcrumbItem,Row,Col,Card,Table,TableColumn } from 'element-ui';
+    ,Submenu,Avatar,Breadcrumb,BreadcrumbItem,Row,Col,Card,Table,TableColumn,Backtop,Footer,Dropdown,DropdownMenu,DropdownItem } from 'element-ui';
 
 Vue.use(Button)
 Vue.use(Input)
@@ -21,4 +21,9 @@ Vue.use(Col)
 Vue.use(Card)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Backtop)
+Vue.use(Footer)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(Dropdown)
 Vue.prototype.$message=Message

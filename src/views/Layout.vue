@@ -51,6 +51,7 @@
         </el-main>
       </el-container>
     </el-container>
+    <el-backtop target=".el-main">👆</el-backtop>
   </div>
 </template>
 
@@ -116,6 +117,11 @@ export default {
 
     },
     headerSelect(key) {
+      if(key==='4-1'){
+        return console.log("管理");
+      }else if(key==='4-2'){
+        return console.log("退出");
+      }
       this.navBar.active=key;
       this.slideMenuActive='0';
       this.$router.push({name:this.navBar.list[this.navBar.active].subMenu[this.slideMenuActive].pathname})
@@ -163,6 +169,7 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   padding-top: 60px;
+  position: relative;
 }
 .nav-breadcrumb{
   background: white;

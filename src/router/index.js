@@ -6,7 +6,7 @@ import NotFound from "@/views/NotFound";
 import Layout from "@/views/Layout";
 import Goods from "@/views/shop/Goods";
 import Orders from "@/views/shop/Orders";
-
+import ImgList from "@/views/image/ImgList";
 
 Vue.use(VueRouter)
 
@@ -43,6 +43,13 @@ const routes = [
         component: Orders,
         meta:{
           title:'订单列表',
+        }
+      },{
+        path:'/image',
+        name:'images',
+        component: ImgList,
+        meta: {
+          title:'图片列表'
         }
       }
     ]

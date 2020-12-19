@@ -13,8 +13,9 @@ export default  {
                     },
                     {
 
-                        name: '2',
-                        icon: 'el-icon-s-grid'
+                        name: '图片列表',
+                        icon: 'el-icon-s-grid',
+                        pathname: 'images'
                     }
                 ]
             },
