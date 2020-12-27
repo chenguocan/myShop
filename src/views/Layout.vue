@@ -66,15 +66,8 @@ export default {
     }
   },
   created() {
-    this.navBar=data.navBar
-    let active=localStorage.getItem('active');
-    let slideActive=localStorage.getItem('slideActive');
-    let currentList=localStorage.getItem('currentList');
-    if(active && slideActive){
-      this.navBar.active=JSON.parse(active);
-      this.slideMenuActive=JSON.parse(slideActive);
-      this.breadList=JSON.parse(currentList)
-    }
+    this.navBar=data.navBar;
+    this.getActive();
   },
   watch:{
     '$route'(){
@@ -129,7 +122,21 @@ export default {
     asideSelect(key){
       this.slideMenuActive=key;
       this.$router.push({name:this.navBar.list[this.navBar.active].subMenu[this.slideMenuActive].pathname})
-    }
+    },
+    async getActive(){
+      let active=await localStorage.getItem('active');
+      let slideActive=await localStorage.getItem('slideActive');
+      let currentList=await localStorage.getItem('currentList');
+      if(active && slideActive){
+        let currentActive=JSON.parse(active);
+        let currentSlideActive=JSON.parse(slideActive);
+        this.navBar.active=currentActive;
+        this.slideMenuActive=currentSlideActive;
+        let pushName=this.navBar.list[currentActive].subMenu[currentSlideActive].pathname;
+        this.$router.push({name:pushName});
+        this.breadList=JSON.parse(currentList)
+      }
+    },
   }
 }
 </script>
